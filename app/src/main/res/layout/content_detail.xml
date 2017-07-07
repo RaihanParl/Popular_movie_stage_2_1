@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.bidjidev.popularmovie.DetailActivity"
+    tools:showIn="@layout/activity_detail">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+
+        <ImageView
+            android:layout_width="@dimen/iVwidthCont"
+            android:layout_height="@dimen/iVwidthCont"
+            android:layout_marginTop="@dimen/marginUpDownCount"
+            android:id="@+id/imgPoster"
+            android:contentDescription="@string/simgPoster"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:visibility="visible" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imgPoster"
+            android:layout_toRightOf="@+id/imgPoster"
+            android:id="@+id/txtRealease"
+            tools:text="@string/Release_date"
+            android:text="@string/Release_date"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=""
+            android:id="@+id/txtYear"
+            android:layout_marginLeft="@dimen/marginSideCount"
+            android:layout_marginStart="@dimen/marginSideCount"
+            android:layout_below="@+id/txtRealease"
+            android:layout_toRightOf="@+id/imgPoster" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Rating"
+            android:id="@+id/txtRating"
+            android:layout_below="@+id/txtYear"
+            android:layout_alignLeft="@+id/txtYear"
+            android:layout_alignStart="@+id/txtYear" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:id="@+id/txtRate"
+            android:layout_below="@+id/txtRating"
+            android:layout_alignLeft="@+id/txtYear"
+            android:layout_alignStart="@+id/txtYear" />
+
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/marginHeightCount"
+            android:layout_margin="@dimen/marginUpDownCount"
+            android:layout_below = "@id/imgPoster"
+            android:background="#ffffff"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/black_line" />
+
+            <TextView
+                android:layout_below="@+id/black_line"
+                android:layout_alignLeft="@+id/black_line"
+                android:layout_alignStart="@+id/black_line"
+                android:layout_alignRight="@+id/black_line"
+                android:layout_alignEnd="@+id/black_line"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/txtOverView"/>
+    </RelativeLayout>
+
+</android.support.v4.widget.NestedScrollView>

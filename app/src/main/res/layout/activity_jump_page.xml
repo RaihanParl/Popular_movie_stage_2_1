@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.bidjidev.popularmovie.JumpPage"
+    tools:showIn="@layout/activity_jump_page">
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Page"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/pageNow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtjump"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/Jump_to"
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/edPage"
+        android:layout_width="match_parent"
+        android:phoneNumber="true"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtjump"
+        android:textSize="25sp" />]
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edPage"
+        android:onClick="oJump"
+        android:text="@string/Jump" />
+
+</RelativeLayout>

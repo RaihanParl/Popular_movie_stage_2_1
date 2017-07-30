@@ -49,7 +49,7 @@ public class DetailActivity extends AppCompatActivity {
     private static final String TAG = "tag";
     public static TextView txtRilis, txtRate, txtOverview;
     public static ImageView imgMoviePoster, imgPosterbig;
-    public static GetMovie movie;
+//    public static GetMovie movie;
     static String movie_poster_url;
     static String movie_posterbig_url;
     public static Intent intent;
@@ -63,6 +63,7 @@ public class DetailActivity extends AppCompatActivity {
     String sRate;
     String sTitleIndex;
     String posterIndex;
+    String countIndex;
     String sFavorite = "0";
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -87,12 +88,7 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         ButterKnife.bind(this);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                shareText(movie.overview, movie.title);
-            }
-        });
+
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         rcReview = (RecyclerView) findViewById(R.id.rcReview);
         rcMovie = (RecyclerView) findViewById(R.id.rcMovie);
@@ -115,11 +111,16 @@ public class DetailActivity extends AppCompatActivity {
             btnFavo.setVisibility(View.VISIBLE);
 
         }
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                shareText(sOverviewIndex,sTitleIndex);
+            }
+        });
 
     }
 
     public void initComponents() {
-        movie = new GetMovie();
         DetailActivity.intent = this.getIntent();
         movie_id = intent.getIntExtra("movie_id", 0);
         int movie_position = intent.getIntExtra("movie_position", 0);
@@ -130,10 +131,10 @@ public class DetailActivity extends AppCompatActivity {
         sRate = intent.getStringExtra("averageIndex");
         sfavIndex = intent.getStringExtra("sfavIndex");
         sTitleIndex = intent.getStringExtra("titleIndex");
-        posterIndex = intent.getStringExtra("posterIndex");
+        countIndex = intent.getStringExtra("countIndex");
         posterIndex = intent.getStringExtra("posterIndex");
         sFavorite = intent.getStringExtra("favoritte");
-        movie = MainActivity.getMovie.get(movie_position);
+
         txtRilis = (TextView) findViewById(R.id.txtYear);
         txtRate = (TextView) findViewById(R.id.txtRate);
         imgMoviePoster = (ImageView) findViewById(R.id.imgPoster);
@@ -145,7 +146,7 @@ public class DetailActivity extends AppCompatActivity {
         txtRilis.setText(sreleaseIndex);
         txtRate.setText(sRate + "/10");
         txtOverview.setText(sOverviewIndex);
-        if (movie.getposterPath() == Server.IMAGE_NOT_FOUND) {
+        if (posterIndex == Server.IMAGE_NOT_FOUND) {
             movie_poster_url = Server.IMAGE_NOT_FOUND;
             movie_posterbig_url = Server.IMAGE_NOT_FOUND;
         } else {
@@ -242,18 +243,17 @@ public class DetailActivity extends AppCompatActivity {
     private void getData() {
         DetailActivity.intent = this.getIntent();
         int movie_position = intent.getIntExtra("movie_position", 0);
-        movie = MainActivity.getMovie.get(movie_position);
         ContentValues contentValues = new ContentValues();
-        contentValues.put(FavoriteContract.FavoriteEnt.COLUMN_MOVIE_ID, movie.getId());
-        contentValues.put(FavoriteContract.FavoriteEnt.COLUMN_MOVIE_TITLE, movie.getTitle());
-        contentValues.put(FavoriteContract.FavoriteEnt.COLUMN_MOVIE_OVERVIEW, movie.getOverview());
-        contentValues.put(FavoriteContract.FavoriteEnt.COLUMN_MOVIE_VOTE_AVERAGE, movie.getvoteAverage());
-        contentValues.put(FavoriteContract.FavoriteEnt.COLUMN_MOVIE_VOTE_COUNT, movie.getVote_count());
-        contentValues.put(FavoriteContract.FavoriteEnt.COLUMN_MOVIE_BACKDROP_PATH, movie.getbackdropPath());
-        contentValues.put(FavoriteContract.FavoriteEnt.COLUMN_MOVIE_POSTER_PATH, movie.getposterPath());
-        contentValues.put(FavoriteContract.FavoriteEnt.COLUMN_MOVIE_RELEASE_DATE, movie.getreleaseDate());
+        contentValues.put(FavoriteContract.FavoriteEnt.COLUMN_MOVIE_ID, movie_id);
+        contentValues.put(FavoriteContract.FavoriteEnt.COLUMN_MOVIE_TITLE, sTitleIndex);
+        contentValues.put(FavoriteContract.FavoriteEnt.COLUMN_MOVIE_OVERVIEW, sOverviewIndex);
+        contentValues.put(FavoriteContract.FavoriteEnt.COLUMN_MOVIE_VOTE_AVERAGE,sRate);
+        contentValues.put(FavoriteContract.FavoriteEnt.COLUMN_MOVIE_VOTE_COUNT,countIndex );
+        contentValues.put(FavoriteContract.FavoriteEnt.COLUMN_MOVIE_BACKDROP_PATH, sbackdropIndex);
+        contentValues.put(FavoriteContract.FavoriteEnt.COLUMN_MOVIE_POSTER_PATH, posterIndex);
+        contentValues.put(FavoriteContract.FavoriteEnt.COLUMN_MOVIE_RELEASE_DATE, sreleaseIndex);
         contentValues.put(FavoriteContract.FavoriteEnt.COLUMN_MOVIE_FAV, "1");
-        contentValues.put(FavoriteContract.FavoriteEnt.COLUMN_MOVIE_ID, movie.getId());
+        contentValues.put(FavoriteContract.FavoriteEnt.COLUMN_MOVIE_ID, movie_id);
         Uri uri = getContentResolver().insert(FavoriteContract.FavoriteEnt.CONTENT_URI, contentValues);
         if (uri != null) {
 //            Toast.makeText(getBaseContext(), uri.toString(), Toast.LENGTH_LONG).show();

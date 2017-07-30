@@ -12,6 +12,11 @@
         android:orderInCategory="100"
         android:title="jump page"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/Favorite"
+        android:orderInCategory="100"
+        android:title="Favorite"
+        app:showAsAction="never"/>
 </menu>
 
 

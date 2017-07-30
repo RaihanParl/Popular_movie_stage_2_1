@@ -34,4 +34,8 @@
     <string name="Jump">Jump</string>
     <string name="Jump_to">Jump To:</string>
     <string name="myApiKey"></string>
+    <string name="movie_detail_check_trailer">"Check out %1$s - %2$s</string>
+    <string name="review">Review:</string>
+    <string name="trailer">Trailer:</string>
+    <string name="favorite">Favorite</string>
 </resources>

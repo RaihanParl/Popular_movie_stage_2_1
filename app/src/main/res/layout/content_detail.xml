@@ -74,16 +74,69 @@
             android:layout_alignParentStart="true"
             android:id="@+id/black_line" />
 
-            <TextView
-                android:layout_below="@+id/black_line"
-                android:layout_alignLeft="@+id/black_line"
-                android:layout_alignStart="@+id/black_line"
-                android:layout_alignRight="@+id/black_line"
-                android:layout_alignEnd="@+id/black_line"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/txtOverView"/>
+        <TextView
+            android:layout_below="@+id/black_line"
+            android:layout_alignLeft="@+id/black_line"
+            android:layout_alignStart="@+id/black_line"
+            android:layout_alignRight="@+id/black_line"
+            android:layout_alignEnd="@+id/black_line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/txtOverView"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtTrailerr"
+            android:text="@string/trailer"
+            android:layout_below="@+id/txtOverView"
+            android:textSize="20dp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/txtTrailerr"
+            android:id="@+id/rv1"
+            android:background="#000"></RelativeLayout>
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:id="@+id/rcMovie"
+            android:layout_below="@+id/rv1">
+        </android.support.v7.widget.RecyclerView>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/rcMovie"
+            android:id="@+id/rv2"
+            android:background="#000"></RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtRevieww"
+            android:text="@string/review"
+            android:layout_below="@+id/rv2"
+
+            android:textSize="20dp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/txtRevieww"
+            android:id="@+id/rv4"
+            android:background="#000"></RelativeLayout>
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="wrap_content"
+            android:layout_height="180dp"
+            android:id="@+id/rcReview"
+            android:layout_below="@+id/rv4">
+
+        </android.support.v7.widget.RecyclerView>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rcReview"
+            android:id="@+id/btnFavo"
+            android:text="@string/favorite"
+            android:onClick="btnFav"/>
     </RelativeLayout>
 
 </android.support.v4.widget.NestedScrollView>

@@ -1,6 +1,5 @@
 package com.bidjidev.popularmovie;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -8,7 +7,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +14,9 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bidjidev.popularmovie.Adapter.PosterAdapter;
+import com.bidjidev.popularmovie.Favorite.FavoriteMain;
 
 import java.util.ArrayList;
 
@@ -41,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         gridview = (GridView) findViewById(R.id.movie_grid);
         int ot = getResources().getConfiguration().orientation;
         gridview.setNumColumns(ot == Configuration.ORIENTATION_LANDSCAPE ? 3 : 2);
@@ -51,7 +51,16 @@ public class MainActivity extends AppCompatActivity {
                                     int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
                 intent.putExtra("movie_id", getMovie.get(position).getId());
+                intent.putExtra("sOverviewIndex", getMovie.get(position).getOverview());
+                intent.putExtra("sbackdropIndex", getMovie.get(position).getbackdropPath());
+                intent.putExtra("sreleaseIndex", getMovie.get(position).getreleaseDate());
+                intent.putExtra("averageIndex", getMovie.get(position).getvoteAverage());
+                intent.putExtra("countIndex", getMovie.get(position).getVote_count());
+                intent.putExtra("titleIndex", getMovie.get(position).getTitle());
+                intent.putExtra("posterIndex", getMovie.get(position).getposterPath());
                 intent.putExtra("movie_position", position);
+                intent.putExtra("favoritte","0" );
+
                 startActivity(intent);
             }
         });
@@ -84,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
                     MainActivity.page = MainActivity.page - 1;
                     startActivity(new Intent(getApplicationContext(), Page2.class));
                     overridePendingTransition(R.anim.push_out_right, R.anim.push_out_right);
-
             }
         });
     }
@@ -109,6 +117,9 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }else if (id == R.id.pJump){
             startActivity(new Intent(this,JumpPage.class));
+            return true;
+        }else if (id == R.id.Favorite){
+            startActivity(new Intent(this,FavoriteMain.class));
             return true;
         }
 

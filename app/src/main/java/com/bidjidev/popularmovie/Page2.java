@@ -2,18 +2,13 @@ package com.bidjidev.popularmovie;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 
-import com.bidjidev.popularmovie.DetailActivity;
-import com.bidjidev.popularmovie.GetMovie;
-import com.bidjidev.popularmovie.PosterAdapter;
-import com.bidjidev.popularmovie.R;
-import com.bidjidev.popularmovie.Setting;
+import com.bidjidev.popularmovie.Adapter.PosterAdapter;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;

@@ -1,4 +1,4 @@
-package com.bidjidev.popularmovie;
+package com.bidjidev.popularmovie.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import com.bidjidev.popularmovie.MainActivity;
+import com.bidjidev.popularmovie.R;
 import com.squareup.picasso.Picasso;
 
 /**

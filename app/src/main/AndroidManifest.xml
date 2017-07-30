@@ -26,7 +26,12 @@
         <activity
             android:name=".JumpPage"
             android:label="@string/title_activity_jump_page"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Favorite.FavoriteMain"></activity>
+        <provider
+            android:name="com.bidjidev.popularmovie.Favorite.FavoriteProvider"
+            android:authorities="com.bidjidev.popularmovie"
+            android:exported="false"/>
     </application>
 
 </manifest>

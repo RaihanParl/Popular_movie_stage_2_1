@@ -5,8 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.os.PersistableBundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ShareCompat;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +22,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +50,8 @@ import butterknife.ButterKnife;
 import uk.co.senab.photoview.PhotoView;
 
 public class DetailActivity extends AppCompatActivity {
+    private final String KEY_RECYCLER_STATE = "recycler_state";
+    private static Bundle mBundleRecyclerViewState;
     private static final String TAG = "tag";
     public static TextView txtRilis, txtRate, txtOverview;
     public static ImageView imgMoviePoster, imgPosterbig;
@@ -80,7 +86,7 @@ public class DetailActivity extends AppCompatActivity {
     GsonReviews gsonReviews;
     int movie_id;
     RecyclerView rcMovie;
-
+    ScrollView mScrollView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +98,7 @@ public class DetailActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         rcReview = (RecyclerView) findViewById(R.id.rcReview);
         rcMovie = (RecyclerView) findViewById(R.id.rcMovie);
+        mScrollView = (ScrollView) findViewById(R.id.mScrollView);
         LinearLayoutManager linearmanager = new LinearLayoutManager(getApplicationContext());
         LinearLayoutManager apake = new LinearLayoutManager(getApplicationContext());
         rcMovie.setLayoutManager(linearmanager);
@@ -243,6 +250,7 @@ public class DetailActivity extends AppCompatActivity {
     private void getData() {
         DetailActivity.intent = this.getIntent();
         int movie_position = intent.getIntExtra("movie_position", 0);
+
         ContentValues contentValues = new ContentValues();
         contentValues.put(FavoriteContract.FavoriteEnt.COLUMN_MOVIE_ID, movie_id);
         contentValues.put(FavoriteContract.FavoriteEnt.COLUMN_MOVIE_TITLE, sTitleIndex);
@@ -297,6 +305,24 @@ public class DetailActivity extends AppCompatActivity {
     public void btnFav(View v) {
         getData();
         btnFavo.setEnabled(false);
+    }
+
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putIntArray("SCROLL_POSITION",
+                new int[]{ mScrollView.getScrollX(), mScrollView.getScrollY()});
+    }
+//
+//    Restore them on onRestoreInstanceState
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        final int[] position = savedInstanceState.getIntArray("SCROLL_POSITION");
+        if(position != null)
+            mScrollView.post(new Runnable() {
+                public void run() {
+                    mScrollView.scrollTo(position[0], position[1]);
+                }
+            });
     }
 
 }

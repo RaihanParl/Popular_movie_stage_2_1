@@ -1,51 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/mScrollView"
     android:fitsSystemWindows="true"
     tools:context="com.bidjidev.popularmovie.DetailActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_height"
-        android:fitsSystemWindows="true"
-        >
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:id="@+id/imgPosterbig" />
+            android:layout_height="?attr/actionBarSize"
+            app:layout_collapseMode="pin"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_bar_height"
+            android:scaleType="fitXY"
+            android:id="@+id/imgPosterbig" />
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_below="@id/imgPosterbig"
+    android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="@dimen/iVwidthCont"
+            android:layout_height="@dimen/iVwidthCont"
+            android:layout_marginTop="@dimen/marginUpDownCount"
+            android:id="@+id/imgPoster"
+            android:contentDescription="@string/simgPoster"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:visibility="visible" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imgPoster"
+            android:layout_toRightOf="@+id/imgPoster"
+            android:id="@+id/txtRealease"
+            tools:text="@string/Release_date"
+            android:text="@string/Release_date"/>
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=""
+            android:id="@+id/txtYear"
+            android:layout_marginLeft="@dimen/marginSideCount"
+            android:layout_marginStart="@dimen/marginSideCount"
+            android:layout_below="@+id/txtRealease"
+            android:layout_toRightOf="@+id/imgPoster" />
 
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Rating"
+            android:id="@+id/txtRating"
+            android:layout_below="@+id/txtYear"
+            android:layout_alignLeft="@+id/txtYear"
+            android:layout_alignStart="@+id/txtYear" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:id="@+id/txtRate"
+            android:layout_below="@+id/txtRating"
+            android:layout_alignLeft="@+id/txtYear"
+            android:layout_alignStart="@+id/txtYear" />
 
-    <include layout="@layout/content_detail" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end"
-        android:src="@drawable/share" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/marginHeightCount"
+            android:layout_margin="@dimen/marginUpDownCount"
+            android:layout_below = "@id/imgPoster"
+            android:background="#ffffff"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/black_line" />
 
-</android.support.design.widget.CoordinatorLayout>
+        <TextView
+            android:layout_below="@+id/black_line"
+            android:layout_alignLeft="@+id/black_line"
+            android:layout_alignStart="@+id/black_line"
+            android:layout_alignRight="@+id/black_line"
+            android:layout_alignEnd="@+id/black_line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/txtOverView"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtTrailerr"
+            android:text="@string/trailer"
+            android:layout_below="@+id/txtOverView"
+            android:textSize="20dp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/txtTrailerr"
+            android:id="@+id/rv1"
+            android:background="#000"></RelativeLayout>
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:id="@+id/rcMovie"
+            android:layout_below="@+id/rv1">
+        </android.support.v7.widget.RecyclerView>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/rcMovie"
+            android:id="@+id/rv2"
+            android:background="#000"></RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtRevieww"
+            android:text="@string/review"
+            android:layout_below="@+id/rv2"
+
+            android:textSize="20dp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/txtRevieww"
+            android:id="@+id/rv4"
+            android:background="#000"></RelativeLayout>
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="wrap_content"
+            android:layout_height="180dp"
+            android:id="@+id/rcReview"
+            android:layout_below="@+id/rv4">
+
+        </android.support.v7.widget.RecyclerView>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@+id/rcReview"
+            android:id="@+id/btnFavo"
+            android:text="@string/favorite"
+            android:onClick="btnFav"/>
+
+
+    </RelativeLayout>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            app:layout_anchorGravity="bottom|end"
+            app:layout_anchor="@id/imgPosterbig"
+            android:src="@drawable/share" />
+    </RelativeLayout>
+
+
+
+
+
+</ScrollView>
